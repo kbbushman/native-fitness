@@ -1,9 +1,10 @@
 import React from 'react';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import AddEntry from './AddEntry';
 import History from './History';
-import { purple, gray } from '../utils/colors';
+import EntryDetail from './EntryDetail';
+import { purple, gray, white } from '../utils/colors';
 
 const TabNavigator = createBottomTabNavigator({
   History: History,
@@ -29,4 +30,19 @@ const TabNavigator = createBottomTabNavigator({
   },
 });
 
-export default createAppContainer(TabNavigator);
+const MainNavigator = createStackNavigator({
+  Home: {
+    screen: TabNavigator,
+  },
+  EntryDetail: {
+    screen: EntryDetail,
+    navigationOptions: () => ({
+      headerStyle: {
+        backgroundColor: purple,
+      },
+      headerTintColor: white
+    })
+  }
+});
+
+export default createAppContainer(MainNavigator);
