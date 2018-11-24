@@ -4,11 +4,13 @@ import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import AddEntry from './AddEntry';
 import History from './History';
 import EntryDetail from './EntryDetail';
+import Live from './Live';
 import { purple, gray, white } from '../utils/colors';
 
 const TabNavigator = createBottomTabNavigator({
   History: History,
   AddEntry: AddEntry,
+  Live: Live,
 },
 {
   defaultNavigationOptions: ({ navigation }) => ({
@@ -19,6 +21,8 @@ const TabNavigator = createBottomTabNavigator({
         iconName = 'ios-bookmarks';
       } else if (routeName === 'AddEntry') {
         iconName = 'ios-add-circle';
+      } else if ( routeName === 'Live') {
+        iconName = 'ios-speedometer'
       }
 
       return <Ionicons name={iconName} size={horizontal ? 20 : 25} color={tintColor} />;
