@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Platform, StyleSheet } from 'react-native';
-import { getMetricMetaInfo, timeToString, getDailyReminderValue } from '../utils/helpers';
+import {
+  getMetricMetaInfo,
+  timeToString,
+  getDailyReminderValue,
+  clearLocalNotification,
+  setLocalNotification,
+} from '../utils/helpers';
 import NativeSlider from './NativeSlider';
 import NativeStepper from './NativeStepper';
 import DateHeader from './DateHeader';
@@ -82,7 +88,10 @@ class AddEntry extends Component {
 
     // Save Entry in AsyncStorage
     submitEntry({ key, entry });
-    // Clear local notification
+    
+    // Reset Local Notification
+    clearLocalNotification()
+      .then(setLocalNotification);
   }
 
   reset = () => {
